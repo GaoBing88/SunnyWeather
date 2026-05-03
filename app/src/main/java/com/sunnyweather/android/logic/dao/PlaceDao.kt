@@ -8,7 +8,7 @@ import com.sunnyweather.android.logic.model.Place
 
 object PlaceDao {
     fun savePlace(place: Place) {
-        sharedPreferences().edit() {
+        sharedPreferences().edit {
             putString("place", Gson().toJson(place))
         }
     }

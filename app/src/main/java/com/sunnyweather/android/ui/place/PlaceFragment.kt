@@ -19,7 +19,7 @@ import com.sunnyweather.android.R
 import com.sunnyweather.android.ui.weather.WeatherActivity
 
 class PlaceFragment : Fragment() {
-    val viewModel by lazy { ViewModelProvider(this).get(PlaceViewModel::class.java) }
+    val viewModel by lazy { ViewModelProvider(this)[PlaceViewModel::class.java] }
     private lateinit var adapter: PlaceAdapter
     override fun onCreateView(
         inflater: LayoutInflater,

@@ -1,7 +1,5 @@
 package com.sunnyweather.android.ui.weather
 
-import android.content.Context
-import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -14,6 +12,7 @@ import android.widget.RelativeLayout
 import android.widget.ScrollView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.core.view.WindowCompat
@@ -28,7 +27,7 @@ import java.text.SimpleDateFormat
 import java.util.Locale
 
 class WeatherActivity : AppCompatActivity() {
-    val viewModel by lazy { ViewModelProvider(this).get(WeatherViewModel::class.java) }
+    val viewModel by lazy { ViewModelProvider(this)[WeatherViewModel::class.java] }
     private lateinit var placeName: TextView
     private lateinit var currentTemp: TextView
     private lateinit var currentSky: TextView
@@ -45,7 +44,7 @@ class WeatherActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         WindowCompat.setDecorFitsSystemWindows(window, false)
-        window.statusBarColor = Color.TRANSPARENT
+        enableEdgeToEdge()
         setContentView(R.layout.activity_weather)
         placeName = findViewById(R.id.placeName)
         currentTemp = findViewById(R.id.currentTemp)
@@ -93,7 +92,7 @@ class WeatherActivity : AppCompatActivity() {
             override fun onDrawerSlide(drawerView: View, slideOffset: Float) {}
             override fun onDrawerOpened(drawerView: View) {}
             override fun onDrawerClosed(drawerView: View) {
-                val manager = getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+                val manager = getSystemService(INPUT_METHOD_SERVICE) as InputMethodManager
                 manager.hideSoftInputFromWindow(
                     drawerView.windowToken,
                     InputMethodManager.HIDE_NOT_ALWAYS
